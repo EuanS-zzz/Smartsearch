@@ -6,10 +6,10 @@ import { ArrowRight } from 'lucide-react';
 
 export default function Home() {
   const featuredProducts = [
-    { id: 'm1', name: 'Striped Long Sleeve Tee', price: 49, image: '/src/imports/Screenshot_2026-04-13_at_15.21.54.png', tag: 'NEW', stock: 3 },
-    { id: 'w9', name: 'Striped Knit Polo', price: 49, image: '/src/imports/Screenshot_2026-04-21_at_20.24.01.png', stock: 13 },
-    { id: 'm6', name: 'Graphic Hoodie', price: 89, image: '/src/imports/Screenshot_2026-04-21_at_20.10.51.png', stock: 15 },
-    { id: 'w2', name: 'Olive Cargo Jacket', price: 129, image: '/src/imports/Screenshot_2026-04-21_at_20.12.18.png', tag: 'POPULAR', stock: 3 },
+    { id: 'm1', name: 'Striped Long Sleeve Tee', price: 49, image: '/images/Screenshot_2026-04-13_at_15.21.54.png', tag: 'NEW', stock: 3 },
+    { id: 'w9', name: 'Striped Knit Polo', price: 49, image: '/images/Screenshot_2026-04-21_at_20.24.01.png', stock: 13 },
+    { id: 'm6', name: 'Graphic Hoodie', price: 89, image: '/images/Screenshot_2026-04-21_at_20.10.51.png', stock: 15 },
+    { id: 'w2', name: 'Olive Cargo Jacket', price: 129, image: '/images/Screenshot_2026-04-21_at_20.12.18.png', tag: 'POPULAR', stock: 3 },
   ];
 
   return (

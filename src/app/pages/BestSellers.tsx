@@ -4,14 +4,14 @@ import { TrendingUp } from 'lucide-react';
 
 export default function BestSellers() {
   const bestSellers = [
-    { id: 'm1', name: 'Striped Long Sleeve Tee', price: 49, image: '/src/imports/Screenshot_2026-04-13_at_15.21.54.png', tag: 'TRENDING', stock: 3 },
-    { id: 'w9', name: 'Striped Knit Polo', price: 49, image: '/src/imports/Screenshot_2026-04-21_at_20.24.01.png', tag: '2K+ SOLD', stock: 13 },
-    { id: 'm3', name: 'Classic Crewneck', price: 69, image: '/src/imports/Screenshot_2026-04-13_at_15.30.51.png', tag: 'TOP RATED', stock: 8 },
-    { id: 'w8', name: 'Striped Knit Tee', price: 48, image: '/src/imports/Screenshot_2026-04-21_at_20.23.48.png', tag: 'TRENDING', stock: 2 },
-    { id: 'm5', name: 'Bomber Jacket', price: 149, image: '/src/imports/Screenshot_2026-04-13_at_15.32.09.png', tag: '1.5K+ SOLD', stock: 4 },
-    { id: 'w2', name: 'Olive Cargo Jacket', price: 129, image: '/src/imports/Screenshot_2026-04-21_at_20.12.18.png', tag: 'TOP RATED', stock: 3 },
-    { id: 'm6', name: 'Graphic Hoodie', price: 89, image: '/src/imports/Screenshot_2026-04-21_at_20.10.51.png', tag: '3K+ SOLD', stock: 15 },
-    { id: 'w5', name: 'Pink Open-Back Crop Top', price: 45, image: '/src/imports/Screenshot_2026-04-21_at_20.22.31.png', tag: 'TRENDING', stock: 4 },
+    { id: 'm1', name: 'Striped Long Sleeve Tee', price: 49, image: '/images/Screenshot_2026-04-13_at_15.21.54.png', tag: 'TRENDING', stock: 3 },
+    { id: 'w9', name: 'Striped Knit Polo', price: 49, image: '/images/Screenshot_2026-04-21_at_20.24.01.png', tag: '2K+ SOLD', stock: 13 },
+    { id: 'm3', name: 'Classic Crewneck', price: 69, image: '/images/Screenshot_2026-04-13_at_15.30.51.png', tag: 'TOP RATED', stock: 8 },
+    { id: 'w8', name: 'Striped Knit Tee', price: 48, image: '/images/Screenshot_2026-04-21_at_20.23.48.png', tag: 'TRENDING', stock: 2 },
+    { id: 'm5', name: 'Bomber Jacket', price: 149, image: '/images/Screenshot_2026-04-13_at_15.32.09.png', tag: '1.5K+ SOLD', stock: 4 },
+    { id: 'w2', name: 'Olive Cargo Jacket', price: 129, image: '/images/Screenshot_2026-04-21_at_20.12.18.png', tag: 'TOP RATED', stock: 3 },
+    { id: 'm6', name: 'Graphic Hoodie', price: 89, image: '/images/Screenshot_2026-04-21_at_20.10.51.png', tag: '3K+ SOLD', stock: 15 },
+    { id: 'w5', name: 'Pink Open-Back Crop Top', price: 45, image: '/images/Screenshot_2026-04-21_at_20.22.31.png', tag: 'TRENDING', stock: 4 },
   ];
 
   return (

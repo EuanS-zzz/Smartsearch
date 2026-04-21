@@ -28,7 +28,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       price: 49,
       quantity: 1,
       size: 'M',
-      image: '/src/imports/Screenshot_2026-04-21_at_20.24.01.png'
+      image: '/images/Screenshot_2026-04-21_at_20.24.01.png'
     },
     {
       id: 'm2',
@@ -36,7 +36,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       price: 79,
       quantity: 1,
       size: 'L',
-      image: '/src/imports/Screenshot_2026-04-13_at_15.29.53.png'
+      image: '/images/Screenshot_2026-04-13_at_15.29.53.png'
     }
   ]);
 

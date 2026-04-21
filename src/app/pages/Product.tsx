@@ -33,18 +33,18 @@ export default function Product() {
       'Machine washable'
     ],
     images: [
-      '/src/imports/Screenshot_2026-04-13_at_15.21.54.png',
-      '/src/imports/Screenshot_2026-04-13_at_15.29.53.png',
-      '/src/imports/Screenshot_2026-04-13_at_15.30.51.png',
-      '/src/imports/Screenshot_2026-04-13_at_15.31.26.png'
+      '/images/Screenshot_2026-04-13_at_15.21.54.png',
+      '/images/Screenshot_2026-04-13_at_15.29.53.png',
+      '/images/Screenshot_2026-04-13_at_15.30.51.png',
+      '/images/Screenshot_2026-04-13_at_15.31.26.png'
     ],
     stock: 3
   };
 
   const relatedProducts = [
-    { id: 'm2', name: 'Half-Zip Sweatshirt', price: 79, image: '/src/imports/Screenshot_2026-04-13_at_15.29.53.png' },
-    { id: 'm4', name: 'Relaxed Fit Jeans', price: 89, image: '/src/imports/Screenshot_2026-04-13_at_15.31.26.png' },
-    { id: 'm5', name: 'Bomber Jacket', price: 149, image: '/src/imports/Screenshot_2026-04-13_at_15.32.09.png' },
+    { id: 'm2', name: 'Half-Zip Sweatshirt', price: 79, image: '/images/Screenshot_2026-04-13_at_15.29.53.png' },
+    { id: 'm4', name: 'Relaxed Fit Jeans', price: 89, image: '/images/Screenshot_2026-04-13_at_15.31.26.png' },
+    { id: 'm5', name: 'Bomber Jacket', price: 149, image: '/images/Screenshot_2026-04-13_at_15.32.09.png' },
   ];
 
   const isFavorite = isInWishlist(product.id);
