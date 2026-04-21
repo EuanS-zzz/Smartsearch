@@ -5,15 +5,15 @@ import fs from 'fs';
 // Product database - ALL 18 products with SPECIFIC keywords for better Google Vision matching
 const productDatabase = [
   // Men's Products
-  { id: 'm1', name: 'Striped Long Sleeve Tee', category: 'Tops', keywords: ['shirt', 'top', 'stripe', 'striped', 'horizontal stripe', 'vertical stripe', 'pattern', 'casual', 'clothing', 'tee', 'long sleeve', 'sleeve', 'cotton', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 49, image: '/images/Screenshot_2026-04-13_at_15.21.54.png' },
+  { id: 'm1', name: 'Striped Long Sleeve Tee', category: 'Tops', keywords: ['shirt', 'top', 'stripe', 'striped', 'horizontal stripe', 'vertical stripe', 'pattern', 'casual', 'clothing', 'tee', 'long sleeve', 'sleeve', 'cotton', 'fabric', 'navy', 'blue', 'white', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 49, image: '/images/Screenshot_2026-04-13_at_15.21.54.png' },
   { id: 'm2', name: 'Half-Zip Sweatshirt', category: 'Tops', keywords: ['sweatshirt', 'top', 'casual', 'zip', 'zipper', 'quarter zip', 'half zip', 'athletic', 'clothing', 'pullover', 'sweater', 'fleece', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 79, image: '/images/Screenshot_2026-04-13_at_15.29.53.png' },
   { id: 'm3', name: 'Classic Crewneck', category: 'Tops', keywords: ['sweatshirt', 'top', 'casual', 'grey', 'gray', 'plain', 'solid', 'basic', 'clothing', 'crewneck', 'sweater', 'pullover', 'cotton', 'fleece', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 69, image: '/images/Screenshot_2026-04-13_at_15.30.51.png' },
   { id: 'm4', name: 'Relaxed Fit Jeans', category: 'Denim', keywords: ['jeans', 'denim', 'pants', 'trousers', 'clothing', 'relaxed', 'loose', 'comfortable', 'blue', 'indigo', 'cotton', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile', 'bottoms'], price: 89, image: '/images/Screenshot_2026-04-13_at_15.31.26.png' },
   { id: 'm5', name: 'Bomber Jacket', category: 'Jackets', keywords: ['jacket', 'outerwear', 'bomber', 'coat', 'zip', 'zipper', 'ribbed', 'cuff', 'clothing', 'flight jacket', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile', 'outer'], price: 149, image: '/images/Screenshot_2026-04-13_at_15.32.09.png' },
   { id: 'm6', name: 'Graphic Hoodie', category: 'Jackets', keywords: ['hoodie', 'sweatshirt', 'graphic', 'print', 'logo', 'design', 'casual', 'clothing', 'jacket', 'hood', 'pullover', 'fleece', 'cotton', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 89, image: '/images/Screenshot_2026-04-21_at_20.10.51.png' },
   { id: 'm7', name: 'Polo Shirt', category: 'Tops', keywords: ['polo', 'shirt', 'top', 'casual', 'button', 'collar', 'collared', 'classic', 'preppy', 'cotton', 'pique', 'fabric', 'clothing', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 59, image: '/images/Screenshot_2026-04-21_at_20.11.14.png' },
-  { id: 'm8', name: 'Floral Print Swim Shorts', category: 'Shorts', keywords: ['shorts', 'swim', 'swimming', 'floral', 'flower', 'botanical', 'print', 'pattern', 'beach', 'summer', 'swimwear', 'trunks', 'polyester', 'fabric', 'clothing', 'apparel', 'fashion', 'garment', 'wear', 'textile', 'bottoms'], price: 45, image: '/images/Screenshot_2026-04-21_at_20.24.36.png' },
-  { id: 'm9', name: 'Striped Swimming Trunks', category: 'Shorts', keywords: ['shorts', 'swim', 'swimming', 'stripe', 'striped', 'horizontal stripe', 'nautical', 'pattern', 'trunks', 'beach', 'summer', 'swimwear', 'polyester', 'fabric', 'clothing', 'apparel', 'fashion', 'garment', 'wear', 'textile', 'bottoms'], price: 42, image: '/images/Screenshot_2026-04-21_at_20.24.41.png' },
+  { id: 'm8', name: 'Floral Print Swim Shorts', category: 'Shorts', keywords: ['shorts', 'swim', 'swimming', 'floral', 'flower', 'botanical', 'print', 'pattern', 'beach', 'summer', 'swimwear', 'trunks', 'polyester', 'fabric', 'colorful', 'vibrant', 'bright', 'tropical', 'clothing', 'apparel', 'fashion', 'garment', 'wear', 'textile', 'bottoms'], price: 45, image: '/images/Screenshot_2026-04-21_at_20.24.36.png' },
+  { id: 'm9', name: 'Striped Swimming Trunks', category: 'Shorts', keywords: ['shorts', 'swim', 'swimming', 'stripe', 'striped', 'horizontal stripe', 'nautical', 'pattern', 'trunks', 'beach', 'summer', 'swimwear', 'polyester', 'fabric', 'blue', 'white', 'navy', 'clothing', 'apparel', 'fashion', 'garment', 'wear', 'textile', 'bottoms'], price: 42, image: '/images/Screenshot_2026-04-21_at_20.24.41.png' },
 
   // Women's Products
   { id: 'w1', name: 'Brown V-Neck Tee', category: 'Tops', keywords: ['shirt', 'top', 'vneck', 'v-neck', 'v neck', 'neckline', 'brown', 'tan', 'cotton', 'fabric', 'clothing', 'tee', 'casual', 'basic', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 39, image: '/images/Screenshot_2026-04-21_at_20.12.52.png' },
@@ -23,8 +23,8 @@ const productDatabase = [
   { id: 'w5', name: 'Pink Open-Back Crop Top', category: 'Tops', keywords: ['top', 'pink', 'rose', 'crop', 'cropped', 'short', 'midriff', 'clothing', 'open back', 'backless', 'cutout', 'fashion', 'trendy', 'cotton', 'fabric', 'apparel', 'garment', 'wear', 'textile'], price: 45, image: '/images/Screenshot_2026-04-21_at_20.22.31.png' },
   { id: 'w6', name: 'Lace Rib Shorts', category: 'Shorts', keywords: ['shorts', 'lace', 'rib', 'ribbed', 'texture', 'textured', 'detail', 'clothing', 'casual', 'summer', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile', 'bottoms'], price: 55, image: '/images/Screenshot_2026-04-21_at_20.23.12.png' },
   { id: 'w7', name: 'Wide Leg Denim', category: 'Denim', keywords: ['jeans', 'denim', 'pants', 'trousers', 'wide leg', 'wide', 'flowy', 'loose', 'relaxed', 'clothing', 'blue', 'indigo', 'cotton', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile', 'bottoms'], price: 52, image: '/images/Screenshot_2026-04-21_at_20.23.26.png' },
-  { id: 'w8', name: 'Striped Knit Tee', category: 'Tops', keywords: ['shirt', 'top', 'stripe', 'striped', 'horizontal stripe', 'pattern', 'knit', 'knitted', 'ribbed', 'texture', 'clothing', 'tee', 'casual', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 48, image: '/images/Screenshot_2026-04-21_at_20.23.48.png' },
-  { id: 'w9', name: 'Striped Knit Polo', category: 'Tops', keywords: ['polo', 'shirt', 'top', 'stripe', 'striped', 'horizontal stripe', 'pattern', 'knit', 'knitted', 'ribbed', 'texture', 'clothing', 'collar', 'collared', 'button', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 49, image: '/images/Screenshot_2026-04-21_at_20.24.01.png' },
+  { id: 'w8', name: 'Striped Knit Tee', category: 'Tops', keywords: ['shirt', 'top', 'stripe', 'striped', 'horizontal stripe', 'pattern', 'knit', 'knitted', 'ribbed', 'texture', 'clothing', 'tee', 'casual', 'fabric', 'navy', 'blue', 'white', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 48, image: '/images/Screenshot_2026-04-21_at_20.23.48.png' },
+  { id: 'w9', name: 'Striped Knit Polo', category: 'Tops', keywords: ['polo', 'shirt', 'top', 'stripe', 'striped', 'horizontal stripe', 'multicolor', 'colorful', 'rainbow', 'bright', 'vibrant', 'yellow', 'green', 'red', 'pink', 'orange', 'pattern', 'knit', 'knitted', 'ribbed', 'texture', 'clothing', 'collar', 'collared', 'button', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 49, image: '/images/Screenshot_2026-04-21_at_20.24.01.png' },
 ];
 
 // Match products based on detected labels
@@ -93,7 +93,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           requests: [{
             image: { content: base64Image },
             features: [
-              { type: 'LABEL_DETECTION', maxResults: 15 },
+              { type: 'LABEL_DETECTION', maxResults: 25 },
               { type: 'IMAGE_PROPERTIES', maxResults: 1 }
             ]
           }]
@@ -128,7 +128,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     return res.status(200).json({
       success: true,
-      labels: labels.slice(0, 15),
+      labels: labels.slice(0, 25),
       confidence: result.labelAnnotations?.[0]?.score || 0,
       dominantColor: dominantColor ? {
         red: Math.round(dominantColor.red || 0),
