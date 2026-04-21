@@ -1,52 +1,20 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import vision from '@google-cloud/vision';
 import formidable from 'formidable';
 import fs from 'fs';
 
-// CORS headers for cross-origin requests
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-};
+// Product database
+const productDatabase = [
+  { id: 'm1', name: 'Striped Long Sleeve Tee', category: 'Tops', keywords: ['shirt', 'top', 'stripe', 'casual', 'clothing'], price: 49, image: '/images/Screenshot_2026-04-13_at_15.21.54.png' },
+  { id: 'm5', name: 'Bomber Jacket', category: 'Jackets', keywords: ['jacket', 'outerwear', 'bomber', 'coat', 'clothing'], price: 149, image: '/images/Screenshot_2026-04-13_at_15.32.09.png' },
+  { id: 'm4', name: 'Relaxed Fit Jeans', category: 'Denim', keywords: ['jeans', 'denim', 'pants', 'trousers', 'clothing'], price: 89, image: '/images/Screenshot_2026-04-13_at_15.31.26.png' },
+  { id: 'w2', name: 'Olive Cargo Jacket', category: 'Jackets', keywords: ['jacket', 'cargo', 'outerwear', 'green', 'olive', 'clothing'], price: 129, image: '/images/Screenshot_2026-04-21_at_20.12.18.png' },
+  { id: 'w7', name: 'Wide Leg Denim', category: 'Denim', keywords: ['jeans', 'denim', 'pants', 'wide leg', 'clothing'], price: 52, image: '/images/Screenshot_2026-04-21_at_20.23.26.png' },
+  { id: 'm3', name: 'Classic Crewneck', category: 'Tops', keywords: ['sweatshirt', 'top', 'casual', 'grey', 'clothing'], price: 69, image: '/images/Screenshot_2026-04-13_at_15.30.51.png' },
+  { id: 'w8', name: 'Striped Knit Tee', category: 'Tops', keywords: ['shirt', 'top', 'stripe', 'knit', 'clothing'], price: 48, image: '/images/Screenshot_2026-04-21_at_20.23.48.png' },
+];
 
-// Initialize Google Vision API client
-const getVisionClient = () => {
-  try {
-    // Option 1: Use credentials from environment variable (Recommended)
-    if (process.env.GOOGLE_CREDENTIALS) {
-      const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
-      return new vision.ImageAnnotatorClient({
-        credentials,
-      });
-    }
-
-    // Option 2: Use key file path
-    if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
-      return new vision.ImageAnnotatorClient();
-    }
-
-    throw new Error('Google Cloud credentials not found');
-  } catch (error) {
-    console.error('Vision client error:', error);
-    throw error;
-  }
-};
-
-// Product matching logic (customize for your database)
-const matchProductsToLabels = (labels: string[]): any[] => {
-  // TODO: Replace with actual database query
-  // This is a mock implementation
-
-  const productDatabase = [
-    { id: 'm1', name: 'Striped Long Sleeve Tee', category: 'Tops', keywords: ['shirt', 'top', 'stripe', 'casual'] },
-    { id: 'm5', name: 'Bomber Jacket', category: 'Jackets', keywords: ['jacket', 'outerwear', 'bomber', 'coat'] },
-    { id: 'm4', name: 'Relaxed Fit Jeans', category: 'Denim', keywords: ['jeans', 'denim', 'pants', 'trousers'] },
-    { id: 'w2', name: 'Olive Cargo Jacket', category: 'Jackets', keywords: ['jacket', 'cargo', 'outerwear', 'green'] },
-    { id: 'w7', name: 'Wide Leg Denim', category: 'Denim', keywords: ['jeans', 'denim', 'pants', 'wide leg'] },
-  ];
-
-  // Score each product based on label matches
+// Match products based on detected labels
+const matchProductsToLabels = (labels: string[]) => {
   const scoredProducts = productDatabase.map(product => {
     const score = labels.reduce((total, label) => {
       const labelLower = label.toLowerCase();
@@ -55,127 +23,120 @@ const matchProductsToLabels = (labels: string[]): any[] => {
       );
       return total + (matchesKeyword ? 1 : 0);
     }, 0);
-
     return { ...product, score };
   });
 
-  // Return top matches (score > 0)
   return scoredProducts
     .filter(p => p.score > 0)
     .sort((a, b) => b.score - a.score)
-    .slice(0, 8);
+    .slice(0, 10);
 };
 
-// Disable body parser for file uploads
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // Handle CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-export default async function handler(
-  req: VercelRequest,
-  res: VercelResponse
-) {
-  // Handle CORS preflight
   if (req.method === 'OPTIONS') {
-    return res.status(200).json({ success: true });
+    return res.status(200).end();
   }
 
-  // Only allow POST
   if (req.method !== 'POST') {
-    return res.status(405).json({
-      error: 'Method not allowed',
-      message: 'Use POST to upload images'
-    });
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    // Parse form data
-    const form = formidable({
-      maxFileSize: 5 * 1024 * 1024, // 5MB max
-      keepExtensions: true,
-    });
+    const apiKey = process.env.GOOGLE_VISION_API_KEY;
 
-    const [fields, files] = await new Promise<[formidable.Fields, formidable.Files]>(
-      (resolve, reject) => {
-        form.parse(req, (err, fields, files) => {
-          if (err) reject(err);
-          else resolve([fields, files]);
-        });
-      }
-    );
-
-    // Get uploaded image
-    const imageFile = Array.isArray(files.image) ? files.image[0] : files.image;
-
-    if (!imageFile) {
-      return res.status(400).json({
-        error: 'No image provided',
-        message: 'Please upload an image file'
+    if (!apiKey) {
+      return res.status(500).json({
+        error: 'API key not configured',
+        message: 'Please add GOOGLE_VISION_API_KEY to environment variables'
       });
     }
 
-    // Read image file
+    // Parse the uploaded image
+    const form = formidable({ maxFileSize: 5 * 1024 * 1024 });
+    const [fields, files] = await form.parse(req);
+
+    const imageFile = files.image?.[0];
+    if (!imageFile) {
+      return res.status(400).json({ error: 'No image provided' });
+    }
+
+    // Read image and convert to base64
     const imageBuffer = fs.readFileSync(imageFile.filepath);
+    const base64Image = imageBuffer.toString('base64');
 
-    // Initialize Vision API client
-    const client = getVisionClient();
+    // Call Google Cloud Vision API using REST
+    const visionResponse = await fetch(
+      `https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          requests: [{
+            image: { content: base64Image },
+            features: [
+              { type: 'LABEL_DETECTION', maxResults: 15 },
+              { type: 'IMAGE_PROPERTIES', maxResults: 1 }
+            ]
+          }]
+        })
+      }
+    );
 
-    // Perform label detection
-    const [result] = await client.labelDetection({
-      image: { content: imageBuffer },
-    });
+    if (!visionResponse.ok) {
+      const errorData = await visionResponse.json();
+      console.error('Vision API error:', errorData);
+      return res.status(500).json({
+        error: 'Vision API failed',
+        message: errorData.error?.message || 'Unknown error'
+      });
+    }
 
-    const labels = result.labelAnnotations || [];
+    const visionData = await visionResponse.json();
+    const result = visionData.responses[0];
 
-    // Extract label descriptions
-    const labelDescriptions = labels
-      .map(label => label.description || '')
-      .filter(Boolean)
-      .slice(0, 10); // Top 10 labels
+    // Extract labels
+    const labels = result.labelAnnotations?.map((l: any) => l.description) || [];
 
-    // Extract dominant colors (optional)
-    const [colorResult] = await client.imageProperties({
-      image: { content: imageBuffer },
-    });
-
-    const colors = colorResult.imagePropertiesAnnotation?.dominantColors?.colors || [];
+    // Extract dominant color
+    const colors = result.imagePropertiesAnnotation?.dominantColors?.colors || [];
     const dominantColor = colors[0]?.color;
 
-    // Match products based on labels
-    const matchedProducts = matchProductsToLabels(labelDescriptions);
+    // Match products
+    const matchedProducts = matchProductsToLabels(labels);
 
-    // Cleanup temp file
-    fs.unlinkSync(imageFile.filepath);
+    console.log(`Detected labels: ${labels.join(', ')}`);
+    console.log(`Found ${matchedProducts.length} matching products`);
 
-    // Return results
     return res.status(200).json({
       success: true,
-      labels: labelDescriptions,
+      labels: labels.slice(0, 15),
+      confidence: result.labelAnnotations?.[0]?.score || 0,
       dominantColor: dominantColor ? {
-        red: dominantColor.red,
-        green: dominantColor.green,
-        blue: dominantColor.blue,
+        red: Math.round(dominantColor.red || 0),
+        green: Math.round(dominantColor.green || 0),
+        blue: Math.round(dominantColor.blue || 0),
       } : null,
-      matchedProducts,
+      matchedProducts: matchedProducts.map(p => ({
+        id: p.id,
+        name: p.name,
+        category: p.category,
+        price: p.price,
+        image: p.image,
+        matchScore: p.score,
+      })),
       productCount: matchedProducts.length,
     });
 
   } catch (error: any) {
     console.error('Visual search error:', error);
-
-    // Return appropriate error
-    if (error.code === 'PERMISSION_DENIED') {
-      return res.status(403).json({
-        error: 'API key invalid',
-        message: 'Please check your Google Cloud credentials'
-      });
-    }
-
     return res.status(500).json({
-      error: 'Visual search failed',
-      message: error.message || 'An unexpected error occurred',
+      error: 'Search failed',
+      message: error.message || 'An unexpected error occurred'
     });
   }
 }
