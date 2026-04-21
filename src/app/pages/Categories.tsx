@@ -1,5 +1,5 @@
-import { useParams } from 'react-router';
-import { useState } from 'react';
+import { useParams, useSearchParams } from 'react-router';
+import { useState, useEffect } from 'react';
 import { SmartSearch } from '../components/SmartSearch';
 import { CategoryChips } from '../components/CategoryChips';
 import { ProductCard } from '../components/ProductCard';
@@ -30,6 +30,7 @@ const womenProducts = [
 
 export default function Categories() {
   const { category } = useParams();
+  const [searchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const isMen = category === 'men';
@@ -37,10 +38,27 @@ export default function Categories() {
 
   const allProducts = isMen ? menProducts : isWomen ? womenProducts : [...menProducts, ...womenProducts];
 
-  const products = selectedCategory === 'All'
+  // Get search terms from query parameter (from visual search)
+  const searchQuery = searchParams.get('search');
+  const searchTerms = searchQuery ? searchQuery.toLowerCase().split(',') : [];
+
+  // Filter by category first
+  let filteredProducts = selectedCategory === 'All'
     ? allProducts
     : allProducts.filter(product => product.category === selectedCategory);
 
+  // Then filter by search terms if they exist (from visual search)
+  if (searchTerms.length > 0) {
+    filteredProducts = filteredProducts.filter(product => {
+      const productText = `${product.name} ${product.category}`.toLowerCase();
+      return searchTerms.some(term =>
+        productText.includes(term.trim()) ||
+        term.trim().includes(product.category.toLowerCase())
+      );
+    });
+  }
+
+  const products = filteredProducts;
   const categories = ['All', 'Tops', 'Jackets', 'Denim', 'Shorts'];
 
   return (
@@ -59,6 +77,18 @@ export default function Categories() {
           <SmartSearch />
         </div>
       </section>
+
+      {/* Visual Search Results Banner */}
+      {searchTerms.length > 0 && (
+        <section className="bg-[#111111] text-white py-4">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <p style={{ fontSize: '0.875rem' }}>
+              ✨ Visual search results for: <strong>{searchTerms.slice(0, 3).join(', ')}</strong>
+              {' '} — {products.length} {products.length === 1 ? 'match' : 'matches'} found
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* Category Filters */}
       <section className="border-b border-[#E5E5E5] py-6">
