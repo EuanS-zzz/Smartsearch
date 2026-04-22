@@ -16,11 +16,11 @@ const productDatabase = [
   { id: 'm9', name: 'Striped Swimming Trunks', category: 'Shorts', keywords: ['shorts', 'swim', 'swimming', 'stripe', 'striped', 'horizontal stripe', 'nautical', 'pattern', 'trunks', 'beach', 'summer', 'swimwear', 'polyester', 'fabric', 'blue', 'white', 'navy', 'clothing', 'apparel', 'fashion', 'garment', 'wear', 'textile', 'bottoms'], price: 42, image: '/images/Screenshot_2026-04-21_at_20.24.41.png' },
 
   // Women's Products
-  { id: 'w1', name: 'Brown V-Neck Tee', category: 'Tops', keywords: ['shirt', 'top', 'vneck', 'v-neck', 'v neck', 'neckline', 'brown', 'tan', 'cotton', 'fabric', 'clothing', 'tee', 'casual', 'basic', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 39, image: '/images/Screenshot_2026-04-21_at_20.12.52.png' },
-  { id: 'w2', name: 'Olive Cargo Jacket', category: 'Jackets', keywords: ['jacket', 'cargo', 'outerwear', 'green', 'olive', 'khaki', 'utility', 'pocket', 'pockets', 'clothing', 'coat', 'cotton', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile', 'outer'], price: 129, image: '/images/Screenshot_2026-04-21_at_20.12.18.png' },
-  { id: 'w3', name: 'Black Tank Top', category: 'Tops', keywords: ['tank', 'top', 'black', 'dark', 'clothing', 'sleeveless', 'casual', 'vest', 'basic', 'cotton', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 35, image: '/images/Screenshot_2026-04-21_at_20.12.30.png' },
-  { id: 'w4', name: 'White V-Neck Tee', category: 'Tops', keywords: ['shirt', 'top', 'vneck', 'v-neck', 'v neck', 'neckline', 'white', 'light', 'cotton', 'fabric', 'clothing', 'tee', 'casual', 'basic', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 38, image: '/images/Screenshot_2026-04-21_at_20.22.18.png' },
-  { id: 'w5', name: 'Pink Open-Back Crop Top', category: 'Tops', keywords: ['top', 'pink', 'rose', 'crop', 'cropped', 'short', 'midriff', 'clothing', 'open back', 'backless', 'cutout', 'fashion', 'trendy', 'cotton', 'fabric', 'apparel', 'garment', 'wear', 'textile'], price: 45, image: '/images/Screenshot_2026-04-21_at_20.22.31.png' },
+  { id: 'w1', name: 'Brown V-Neck Tee', category: 'Tops', keywords: ['shirt', 'top', 'vneck', 'v-neck', 'v neck', 'neckline', 'brown', 'tan', 'beige', 'camel', 'khaki', 'taupe', 'mocha', 'coffee', 'earth tone', 'neutral', 'cotton', 'fabric', 'clothing', 'tee', 'casual', 'basic', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 39, image: '/images/Screenshot_2026-04-21_at_20.12.52.png' },
+  { id: 'w2', name: 'Olive Cargo Jacket', category: 'Jackets', keywords: ['jacket', 'cargo', 'outerwear', 'green', 'olive', 'khaki', 'army green', 'military green', 'sage', 'moss', 'forest green', 'earth tone', 'utility', 'pocket', 'pockets', 'clothing', 'coat', 'cotton', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile', 'outer'], price: 129, image: '/images/Screenshot_2026-04-21_at_20.12.18.png' },
+  { id: 'w3', name: 'Black Tank Top', category: 'Tops', keywords: ['tank', 'top', 'black', 'dark', 'charcoal', 'onyx', 'ebony', 'jet black', 'clothing', 'sleeveless', 'casual', 'vest', 'basic', 'cotton', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile', 'shirt'], price: 35, image: '/images/Screenshot_2026-04-21_at_20.12.30.png' },
+  { id: 'w4', name: 'White V-Neck Tee', category: 'Tops', keywords: ['shirt', 'top', 'vneck', 'v-neck', 'v neck', 'neckline', 'white', 'light', 'cream', 'ivory', 'off white', 'snow', 'pure white', 'bright', 'cotton', 'fabric', 'clothing', 'tee', 'casual', 'basic', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 38, image: '/images/Screenshot_2026-04-21_at_20.22.18.png' },
+  { id: 'w5', name: 'Pink Open-Back Crop Top', category: 'Tops', keywords: ['top', 'pink', 'rose', 'salmon', 'blush', 'coral', 'magenta', 'fuchsia', 'pastel', 'light pink', 'hot pink', 'crop', 'cropped', 'short', 'midriff', 'clothing', 'open back', 'backless', 'cutout', 'fashion', 'trendy', 'cotton', 'fabric', 'apparel', 'garment', 'wear', 'textile', 'shirt', 'tee'], price: 45, image: '/images/Screenshot_2026-04-21_at_20.22.31.png' },
   { id: 'w6', name: 'Lace Rib Shorts', category: 'Shorts', keywords: ['shorts', 'lace', 'rib', 'ribbed', 'texture', 'textured', 'detail', 'clothing', 'casual', 'summer', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile', 'bottoms'], price: 55, image: '/images/Screenshot_2026-04-21_at_20.23.12.png' },
   { id: 'w7', name: 'Wide Leg Denim', category: 'Denim', keywords: ['jeans', 'denim', 'pants', 'trousers', 'wide leg', 'wide', 'flowy', 'loose', 'relaxed', 'clothing', 'blue', 'indigo', 'cotton', 'fabric', 'apparel', 'fashion', 'garment', 'wear', 'textile', 'bottoms'], price: 52, image: '/images/Screenshot_2026-04-21_at_20.23.26.png' },
   { id: 'w8', name: 'Striped Knit Tee', category: 'Tops', keywords: ['shirt', 'top', 'stripe', 'striped', 'horizontal stripe', 'pattern', 'knit', 'knitted', 'ribbed', 'texture', 'clothing', 'tee', 'casual', 'fabric', 'navy', 'blue', 'white', 'apparel', 'fashion', 'garment', 'wear', 'textile'], price: 48, image: '/images/Screenshot_2026-04-21_at_20.23.48.png' },
@@ -30,13 +30,26 @@ const productDatabase = [
 // Match products based on detected labels
 const matchProductsToLabels = (labels: string[]) => {
   const scoredProducts = productDatabase.map(product => {
-    const score = labels.reduce((total, label) => {
+    let score = 0;
+    labels.forEach(label => {
       const labelLower = label.toLowerCase();
-      const matchesKeyword = product.keywords.some(kw =>
-        labelLower.includes(kw) || kw.includes(labelLower)
-      );
-      return total + (matchesKeyword ? 1 : 0);
-    }, 0);
+      product.keywords.forEach(kw => {
+        const kwLower = kw.toLowerCase();
+        // Exact match
+        if (labelLower === kwLower) {
+          score += 3;
+        }
+        // Label contains keyword or vice versa
+        else if (labelLower.includes(kwLower) || kwLower.includes(labelLower)) {
+          score += 2;
+        }
+        // Partial word match (e.g., "pink" in "pinkish")
+        else if (labelLower.split(' ').some(word => word.includes(kwLower)) ||
+                 kwLower.split(' ').some(word => word.includes(labelLower))) {
+          score += 1;
+        }
+      });
+    });
     return { ...product, score };
   });
 
@@ -123,8 +136,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Match products
     const matchedProducts = matchProductsToLabels(labels);
 
-    console.log(`Detected labels: ${labels.join(', ')}`);
+    console.log('=== VISUAL SEARCH DEBUG ===');
+    console.log(`Detected labels (${labels.length}):`, labels);
+    console.log(`Dominant color:`, dominantColor);
     console.log(`Found ${matchedProducts.length} matching products`);
+    if (matchedProducts.length > 0) {
+      console.log('Top matches:', matchedProducts.slice(0, 3).map(p => `${p.name} (score: ${p.score})`));
+    } else {
+      console.log('NO MATCHES - checking why...');
+      console.log('Sample product keywords:', productDatabase[0].keywords.slice(0, 10));
+    }
+    console.log('========================');
 
     return res.status(200).json({
       success: true,
