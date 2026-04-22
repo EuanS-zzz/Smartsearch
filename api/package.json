@@ -2,6 +2,7 @@
   "name": "zara-visual-search-api",
   "version": "1.0.0",
   "description": "Visual search API for ZARA redesign",
+  "type": "module",
   "dependencies": {
     "@vercel/node": "^3.0.21",
     "formidable": "^3.5.1"
