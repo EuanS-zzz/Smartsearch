@@ -43,11 +43,15 @@ export default function Root() {
             </nav>
 
             <div className="flex items-center gap-6">
-              <button className="text-[#666666] hover:text-[#111111] transition-colors">
+              <button
+                aria-label="Account"
+                className="text-[#666666] hover:text-[#111111] transition-colors"
+              >
                 <User className="w-5 h-5" strokeWidth={1.5} />
               </button>
               <button
                 onClick={() => setShowMiniCart(true)}
+                aria-label={`Shopping bag${cartCount > 0 ? ` with ${cartCount} items` : ''}`}
                 className="relative text-[#666666] hover:text-[#111111] transition-colors"
               >
                 <ShoppingBag className="w-5 h-5" strokeWidth={1.5} />

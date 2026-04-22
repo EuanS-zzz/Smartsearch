@@ -48,7 +48,9 @@ export function ProductCard({ id, name, price, image, tag, stock = 10 }: Product
           {image ? (
             <img
               src={image}
-              alt={name}
+              alt={`${name} - £${price}`}
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-300"
               style={{ transform: isHovered ? 'scale(1.05)' : 'scale(1)' }}
             />
@@ -71,6 +73,7 @@ export function ProductCard({ id, name, price, image, tag, stock = 10 }: Product
                     <button
                       key={size}
                       onClick={(e) => handleQuickAdd(e, size)}
+                      aria-label={`Add ${name} size ${size} to bag`}
                       className="flex-1 bg-[#111111] text-white py-3 rounded-xl hover:bg-[#2A2A2A] transition-all hover:scale-105"
                       style={{ fontSize: '0.9375rem', fontWeight: 600 }}
                     >
